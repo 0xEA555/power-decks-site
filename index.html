@@ -1,8 +1,10 @@
 <!doctype html>
-<!-- Power Decks landing · v2 (light) · 2026-10-01 -->
-<html lang="en">
+<!-- Power Decks landing · v2 (light + night toggle) · 2026-10-01 -->
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
+<!-- prevent flash: set theme before paint -->
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('pd-theme')||'light')}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Power Decks turn the classic success books into a daily practice. Every card is the author's own words. Three decks launching Black Friday, Nov 27.">
 <meta name="theme-color" content="#f5f0e6">
@@ -14,8 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500;700;800;900&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
 <style>
-/* Light version: warm cream ground, night and amber colour blocks, line geometry, hard-offset colour blocks behind product shots.
-   Boldness lives in two places: the amber block and the concentric-diamond line ornaments. Everything else stays quiet. */
+/* ─── BASE (light theme default) ───────────────────────────────── */
 :root {
   color-scheme: light;
   --night: #1b1718;
@@ -76,18 +77,28 @@ h3 { font-weight: 800; font-size: 20px; line-height: 1.2; }
 p { margin: 0; }
 .stack > * + * { margin-top: 1.1em; }
 
-/* nav bar — thick bottom rule */
+/* nav */
 .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); border-bottom: 4px solid var(--ink); }
 .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+.bar-right { display: flex; align-items: center; gap: 16px; }
 .mark { font-weight: 800; letter-spacing: .34em; font-size: 14px; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
 .beta { display: inline-block; border: 1px solid currentColor; padding: 3px 9px; font-weight: 700; font-size: 11px; letter-spacing: .26em; text-transform: uppercase; }
+
+/* theme toggle tabs */
+.theme-tabs { display: flex; border: 1.5px solid currentColor; }
+.theme-tab {
+  appearance: none; background: transparent; border: none; cursor: pointer;
+  font: inherit; font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  padding: 6px 13px; color: inherit; transition: background .12s, color .12s; line-height: 1;
+}
+.theme-tab[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
 
 /* buttons + form */
 .btn {
   appearance: none; border: 0; cursor: pointer; font: inherit; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; font-size: 14px;
   background: var(--amber); color: var(--ink); padding: 16px 26px; min-height: 52px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center;
+  transition: background-color .15s, transform .15s;
 }
-.btn { transition: background-color .15s, transform .15s; }
 .btn:hover { background: #e68a2c; }
 .btn:active { transform: translateY(1px); }
 .btn.small { padding: 10px 16px; min-height: 40px; font-size: 12px; }
@@ -99,14 +110,12 @@ p { margin: 0; }
 .signup input::placeholder { color: var(--fg-dim); }
 .fine { font-size: 14px; color: var(--fg-dim); margin-top: 12px; }
 .signup-msg { margin-top: 12px; font-weight: 700; min-height: 1.5em; font-size: 15px; }
-
-/* on night-block sections */
 .night-block .signup input { background: var(--night-2); color: var(--cream); border-color: #5a5049; }
 .night-block .signup input::placeholder { color: #8a8078; }
 .night-block .fine { color: #8a8078; }
 
-/* hero — thick top rule, light bg */
-.hero { padding-block: clamp(48px, 7vw, 96px) clamp(48px, 7vw, 96px); position: relative; overflow: hidden; }
+/* hero */
+.hero { padding-block: clamp(48px, 7vw, 96px); position: relative; overflow: hidden; border-top: 5px solid var(--ink); }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; position: relative; }
 .hero .label { color: var(--amber-deep); }
 .hero h1 { margin-top: 18px; }
@@ -129,22 +138,21 @@ p { margin: 0; }
 .orn-hero { color: #cfc6ae; width: 74%; left: 50%; top: 52%; transform: translate(-50%, -50%); z-index: 0; }
 .shelf figcaption { margin-top: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; font-size: 11px; color: var(--fg-dim); }
 
-/* strip — boxed cells with colored top accent rules (line geometry) */
+/* strip — boxed cells with colored top accent rules */
 .strip {
   margin-top: clamp(40px, 6vw, 72px);
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0; border: 2px solid var(--ink);
-  font-size: 15px; color: var(--fg-dim);
+  font-size: 15px; color: var(--fg-dim); background: #fbf8ef;
 }
 .strip > div { padding: 18px 20px; }
 .strip > div + div { border-left: 1px solid var(--ink); }
-.strip { background: #fbf8ef; }
 .strip > div:nth-child(1) { border-top: 4px solid var(--amber); }
 .strip > div:nth-child(2) { border-top: 4px solid var(--teal); }
 .strip > div:nth-child(3) { border-top: 4px solid var(--brick); }
 .strip strong { display: block; color: var(--ink); font-weight: 800; text-transform: uppercase; letter-spacing: .1em; font-size: 13px; margin-bottom: 4px; }
 
-/* problem — NIGHT BLOCK */
+/* problem — NIGHT BLOCK (light theme) */
 .problem { background: var(--night); color: var(--cream); position: relative; overflow: hidden; }
 .problem .wrap { position: relative; }
 .problem-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(28px, 6vw, 88px); }
@@ -153,39 +161,37 @@ p { margin: 0; }
 .problem .stack { font-size: 19px; line-height: 1.6; color: #c8bfb0; }
 .problem .stack p:last-child { font-weight: 800; color: var(--cream); }
 
-/* guide — amber left-rule on blockquote */
+/* guide */
 .guide { border-top: 5px solid var(--amber); }
 .guide-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(28px, 6vw, 88px); align-items: start; }
 .guide blockquote { margin: 0; font-family: var(--serif); font-size: clamp(22px, 3vw, 32px); line-height: 1.35; border-left: 5px solid var(--amber); padding-left: 24px; }
 .guide .sig { margin-top: 20px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; font-size: 13px; color: var(--amber-deep); }
 .guide .stack { font-size: 18px; }
 
-/* plan — AMBER BLOCK */
+/* plan — AMBER BLOCK (light theme) */
 .plan { background: var(--amber); color: var(--ink); }
 .plan .label { color: var(--ink); }
 .plan h2 { max-width: 14em; }
 .plan .dim, .plan p.dim { color: var(--on-amber); }
 
-/* steps — outlined square numbers (line geometry) */
+/* steps — outlined square numbers */
 .steps { margin: 40px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); counter-reset: s; }
 .steps li { border-top: 2px solid var(--ink); padding-top: 18px; counter-increment: s; }
 .steps li::before {
   content: counter(s, decimal-leading-zero);
   display: flex; align-items: center; justify-content: center;
-  width: 36px; height: 36px;
-  border: 2px solid var(--ink);
+  width: 36px; height: 36px; border: 2px solid var(--ink);
   font-weight: 700; font-size: 13px; letter-spacing: .05em;
-  margin-bottom: 14px;
+  margin-bottom: 14px; background: var(--cream);
 }
 .steps h3 { margin-bottom: 8px; }
-.steps li::before { background: var(--cream); }
 .moves-head { margin-top: clamp(56px, 8vw, 96px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: end; }
 .moves { margin-top: 32px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 2vw, 24px); }
 .move h3 { margin-top: 26px; text-transform: uppercase; letter-spacing: .08em; font-size: 15px; }
 .move > p { margin-top: 4px; font-size: 15px; color: var(--on-amber); }
 .moves .pc { box-shadow: 0 0 0 1px var(--ink), 7px 7px 0 var(--ink); }
 
-/* css cards — cream paper, unchanged from dark version */
+/* css cards — cream paper */
 .pc { container-type: inline-size; width: 100%; aspect-ratio: 440 / 760; background: var(--cream); color: var(--ink); position: relative; box-shadow: 0 0 0 1px rgba(20,16,17,.22); display: flex; flex-direction: column; overflow: hidden; }
 .pc .band { height: 13.7%; padding: 0 9.1cqw; display: flex; flex-direction: column; justify-content: center; }
 .pc .band .row { display: flex; justify-content: space-between; align-items: baseline; }
@@ -205,7 +211,7 @@ p { margin: 0; }
 .pc .foot b::before { content: ""; display: inline-block; width: 1.8cqw; height: 1.8cqw; border-radius: 50%; background: #aa311d; margin-right: 1.6cqw; vertical-align: .05em; }
 .pc .foot b { font-weight: 500; }
 
-/* decks — thick colored top borders per deck */
+/* decks */
 .decks { border-top: 5px solid var(--ink); }
 .decks .label { color: var(--amber-deep); }
 .decks h2 { max-width: 13em; }
@@ -235,14 +241,11 @@ p { margin: 0; }
 .facts li { display: grid; grid-template-columns: 7.5em 1fr; gap: 12px; padding-top: 8px; border-top: 1px solid var(--line); }
 .facts li span:first-child { font-weight: 700; text-transform: uppercase; letter-spacing: .16em; font-size: 12px; color: var(--fg-dim); padding-top: 3px; }
 .deck .btn { margin-top: 28px; }
-.deck .status { margin-top: 20px; }
 .deck-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .deck-cards img, .deck-cards .pc { border: 1px solid var(--ink); box-shadow: 5px 5px 0 var(--tint); }
-.deck-cards .pc { box-shadow: 5px 5px 0 var(--tint); }
-
 .status { display: inline-block; margin-top: 0; font-weight: 700; text-transform: uppercase; letter-spacing: .18em; font-size: 11px; border: 1px solid var(--teal-deep); color: var(--teal-deep); padding: 3px 8px; }
 
-/* css box Nº 03 — kept dark, it's a product render */
+/* css box Nº 03 */
 .cbox { container-type: inline-size; aspect-ratio: 2875 / 4875; background: var(--night); border: 1px solid var(--line); width: 100%; position: relative; color: #fff; text-align: center; overflow: hidden; }
 .cbox .plate { position: absolute; top: 0; left: 0; right: 0; height: 43.5%; display: grid; grid-template-columns: 55% 45%; grid-template-rows: 55% 45%; }
 .cbox .plate div { min-width: 0; }
@@ -263,7 +266,7 @@ p { margin: 0; }
 .cbox .tg { position: absolute; top: 83.4%; left: 0; right: 0; font-weight: 800; letter-spacing: .12em; font-size: 5.4cqw; line-height: 1.22; padding-left: .12em; }
 .cbox .tg em { font-style: normal; color: var(--teal); }
 
-/* trust — bg-alt, colored top rules per card */
+/* trust */
 .trust { border-top: 5px solid var(--ink); }
 .trust h2 { max-width: 12em; }
 .trust-grid { margin-top: 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); }
@@ -273,7 +276,7 @@ p { margin: 0; }
 .trust-grid > div:nth-child(3) { border-top: 4px solid var(--teal-deep); }
 .trust-grid h3 { text-transform: uppercase; letter-spacing: .08em; font-size: 15px; margin-bottom: 8px; }
 .trust-grid p { color: var(--ink-dim); }
-.fidelity { margin-top: 56px; padding-left: 24px; border-left: 5px solid var(--amber); margin-bottom: 0; font-family: var(--serif); font-size: clamp(20px, 2.6vw, 28px); line-height: 1.4; max-width: 30em; }
+.fidelity { margin-top: 56px; padding-left: 24px; border-left: 5px solid var(--amber); font-family: var(--serif); font-size: clamp(20px, 2.6vw, 28px); line-height: 1.4; max-width: 30em; }
 
 /* fit */
 .fit { border-top: 5px solid var(--teal-deep); }
@@ -300,15 +303,14 @@ p { margin: 0; }
 .faq-list details[open] summary::after { content: "\2212"; }
 .faq-list details p { padding: 0 0 22px; max-width: 38em; color: var(--ink-dim); font-size: 17px; }
 
-/* final — NIGHT BLOCK (bookend) */
+/* final — NIGHT BLOCK */
 .final { background: var(--night); color: var(--cream); text-align: left; position: relative; overflow: hidden; }
 .final .wrap { position: relative; z-index: 1; }
 .orn-final { color: rgba(247,241,225,.16); width: min(340px, 56vw); right: 9%; top: 50%; transform: translateY(-50%); }
-.final .lede { max-width: 24em; }
 .orn-final i { border-color: currentColor; }
 .orn-final b { position: absolute; left: 50%; top: 50%; width: 9%; aspect-ratio: 1; background: var(--amber); transform: translate(-50%, -50%) rotate(45deg); }
 .final h2 { max-width: 11em; color: var(--cream); }
-.final .lede { margin-top: 20px; color: #b9afa0; }
+.final .lede { margin-top: 20px; color: #b9afa0; max-width: 24em; }
 .final .signup { margin-top: 32px; }
 .final .signup input { background: var(--night-2); color: var(--cream); border-color: #5a5049; }
 .final .signup input::placeholder { color: #8a8078; }
@@ -320,6 +322,95 @@ footer .wrap { display: grid; gap: 14px; }
 footer .mark { color: var(--fg); }
 footer p { max-width: 52em; }
 
+/* ─── DARK THEME OVERRIDES ──────────────────────────────────────── */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg:         #1b1718;
+  --bg-alt:     #f7f1e1;  /* .paper sections stay cream on dark body */
+  --fg:         #f7f1e1;
+  --fg-dim:     #b9afa0;
+  --line:       #3a3234;
+  --amber-deep: #d67c20;
+  --on-amber:   #4a423b;
+  --tint:       #3a3234;
+}
+[data-theme="dark"] body { background: var(--bg); color: var(--fg); }
+[data-theme="dark"] .bar { border-bottom-width: 1px; border-bottom-color: var(--line); }
+[data-theme="dark"] .theme-tab[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+
+/* hero */
+[data-theme="dark"] .hero { border-top: none; padding-block: clamp(40px,6vw,80px) clamp(48px,7vw,96px); }
+[data-theme="dark"] .orn-hero { color: rgba(255,255,255,.05); }
+[data-theme="dark"] .shelf figure:nth-child(1) .box-img,
+[data-theme="dark"] .shelf figure:nth-child(2) .box-img { box-shadow: none; border-color: #4a4244; }
+[data-theme="dark"] .shelf figure:nth-child(3) .cbox { box-shadow: none; }
+[data-theme="dark"] .hero .signup input { background: #262021; color: var(--fg); border-color: var(--fg-dim); }
+[data-theme="dark"] .hero .signup input::placeholder { color: var(--fg-dim); }
+[data-theme="dark"] .hero .fine { color: var(--fg-dim); }
+
+/* strip: simple top rule, no box */
+[data-theme="dark"] .strip { border: none; border-top: 1px solid var(--line); background: transparent; gap: 20px; }
+[data-theme="dark"] .strip > div { padding: 22px 0 0; }
+[data-theme="dark"] .strip > div + div { border-left: none; }
+[data-theme="dark"] .strip > div:nth-child(1),
+[data-theme="dark"] .strip > div:nth-child(2),
+[data-theme="dark"] .strip > div:nth-child(3) { border-top: none; }
+[data-theme="dark"] .strip strong { color: var(--fg); }
+
+/* problem: becomes cream paper */
+[data-theme="dark"] .problem { background: var(--bg-alt); color: var(--ink); }
+[data-theme="dark"] .problem h2 { color: var(--ink); }
+[data-theme="dark"] .problem .label { color: var(--brick); }
+[data-theme="dark"] .problem .stack { color: var(--ink-dim); }
+[data-theme="dark"] .problem .stack p:last-child { color: var(--ink); }
+
+/* guide: remove amber border treatments */
+[data-theme="dark"] .guide { border-top: none; }
+[data-theme="dark"] .guide blockquote { border-left: none; padding-left: 0; }
+[data-theme="dark"] .guide .sig { color: var(--amber); }
+
+/* plan: becomes cream paper */
+[data-theme="dark"] .plan { background: var(--bg-alt); color: var(--ink); }
+[data-theme="dark"] .plan .label { color: var(--brick); }
+[data-theme="dark"] .plan .dim, [data-theme="dark"] .plan p.dim { color: var(--ink-dim); }
+[data-theme="dark"] .steps li::before { background: transparent; }
+[data-theme="dark"] .move > p { color: var(--ink-dim); }
+[data-theme="dark"] .moves .pc { box-shadow: 0 0 0 1px rgba(20,16,17,.22); }
+
+/* decks: thin separator, brighter nº labels */
+[data-theme="dark"] .decks { border-top: none; }
+[data-theme="dark"] .deck { border-top: 1px solid var(--line); }
+[data-theme="dark"] .deck.d1, [data-theme="dark"] .deck.d2, [data-theme="dark"] .deck.d3 { border-top-color: var(--line); }
+[data-theme="dark"] .deck.d1 .nº { color: var(--amber); }
+[data-theme="dark"] .deck.d2 .nº { color: var(--leaf); }
+[data-theme="dark"] .deck.d3 .nº { color: var(--teal); }
+[data-theme="dark"] .deck.d1 .box-img,
+[data-theme="dark"] .deck.d2 .box-img { box-shadow: none; border-color: #4a4244; }
+[data-theme="dark"] .deck.d3 .cbox { box-shadow: none; }
+[data-theme="dark"] .deck-cards img { box-shadow: none; border-color: #4a4244; }
+[data-theme="dark"] .deck-cards .pc { box-shadow: 0 0 0 1px rgba(20,16,17,.22); }
+[data-theme="dark"] .status { border-color: var(--teal); color: var(--teal); }
+
+/* trust: uniform ink borders */
+[data-theme="dark"] .trust { border-top: none; }
+[data-theme="dark"] .trust-grid > div { border-top: 3px solid var(--ink); }
+[data-theme="dark"] .fidelity { border-left: none; padding-left: 0; }
+
+/* fit */
+[data-theme="dark"] .fit { border-top: none; }
+[data-theme="dark"] .fit-grid .yes h3 { color: var(--leaf); border-bottom-color: var(--leaf); }
+
+/* faq */
+[data-theme="dark"] .faq-list summary:hover,
+[data-theme="dark"] .faq-list details[open] summary { color: var(--amber); }
+
+/* final: transparent body is already dark */
+[data-theme="dark"] .final { background: transparent; }
+
+/* footer */
+[data-theme="dark"] footer { border-top-width: 1px; border-top-color: var(--line); background: transparent; }
+
+/* ─── RESPONSIVE ────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .orn-hero { display: none; }
   .hero-grid, .problem-grid, .guide-grid, .moves-head { grid-template-columns: minmax(0, 1fr); }
@@ -330,6 +421,7 @@ footer p { max-width: 52em; }
   .deck .deck-cards { grid-column: 1 / -1; max-width: 420px; position: static; }
   .strip { grid-template-columns: minmax(0, 1fr); }
   .strip > div + div { border-left: none; border-top: 1px solid var(--ink); }
+  [data-theme="dark"] .strip > div + div { border-top: 1px solid var(--line); }
 }
 @media (max-width: 560px) {
   .deck { grid-template-columns: minmax(0, 1fr); }
@@ -337,6 +429,7 @@ footer p { max-width: 52em; }
   .facts li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
   .bar .btn { display: none; }
   .moves { gap: 12px; }
+  .theme-tabs { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
@@ -346,7 +439,13 @@ footer p { max-width: 52em; }
 <header class="bar">
   <div class="wrap">
     <a class="mark" href="#top">Power Decks</a>
-    <a class="btn small" href="#join">Get the launch note</a>
+    <div class="bar-right">
+      <div class="theme-tabs" id="theme-tabs" role="group" aria-label="Color theme">
+        <button class="theme-tab" data-t="light" aria-pressed="true">Light</button>
+        <button class="theme-tab" data-t="dark" aria-pressed="false">Night</button>
+      </div>
+      <a class="btn small" href="#join">Get the launch note</a>
+    </div>
   </div>
 </header>
 
@@ -357,10 +456,10 @@ footer p { max-width: 52em; }
     <div class="hero-grid">
       <div>
         <p class="label">Launching Black Friday, Nov 27</p>
-        <h1>You’ve read the book. <span class="hl">Now run it.</span></h1>
-        <p class="lede">Power Decks turn the classic success books into a daily practice. Every card is the author’s own words. Pick the deck for where you are, and use it every day.</p>
+        <h1>You've read the book. <span class="hl">Now run it.</span></h1>
+        <p class="lede">Power Decks turn the classic success books into a daily practice. Every card is the author's own words. Pick the deck for where you are, and use it every day.</p>
         <form class="signup" id="join-hero" novalidate>
-          <label for="em-hero" class="sr" style="position:absolute;left:-9999px">Email</label>
+          <label for="em-hero" class="sr">Email</label>
           <input id="em-hero" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required>
           <button class="btn" type="submit">Get the launch note</button>
         </form>
@@ -368,39 +467,38 @@ footer p { max-width: 52em; }
         <p class="fine">One email when the decks go on sale. The first run is small.</p>
       </div>
       <div class="shelf-wrap">
-      <div class="orn orn-hero" aria-hidden="true"><i></i></div>
-      <div class="shelf" aria-label="The three launch decks">
-        <figure><img class="box-img" src="assets/front-tagr.png" alt="Power Deck Nº 01 box front: Think and Grow Rich, Napoleon Hill, 1937" width="380" height="644"><figcaption>Nº 01 · Think and Grow Rich</figcaption></figure>
-        <figure><img class="box-img" src="assets/front-sogr.png" alt="Power Deck Nº 02 box front: The Science of Getting Rich, Wallace D. Wattles, 1910" width="380" height="644"><figcaption>Nº 02 · The Science of Getting Rich</figcaption></figure>
-        <figure>
-          <div class="cbox" role="img" aria-label="Power Deck Nº 03 box front, concept render: The Game of Life and How to Play It, Florence Scovel Shinn, 1925">
-            <div class="plate"><div class="p1"></div><div class="p2"><div class="dia"><i></i></div></div><div class="p3"></div><div class="p4"></div></div>
-            <div class="nn">POWER DECK Nº 03</div><div class="bf">Built from the original text of</div>
-            <div class="tt">THE GAME OF LIFE</div><div class="bar2"></div><div class="au">Florence Scovel Shinn · 1925</div>
-            <div class="tg">LEARN THE PRINCIPLE.<br>USE THE TOOL.<br><em>DAILY.</em></div>
-          </div>
-          <figcaption>Nº 03 · The Game of Life · concept render</figcaption>
-        </figure>
-      </div>
+        <div class="orn orn-hero" aria-hidden="true"><i></i></div>
+        <div class="shelf" aria-label="The three launch decks">
+          <figure><img class="box-img" src="assets/front-tagr.png" alt="Power Deck Nº 01 box front: Think and Grow Rich, Napoleon Hill, 1937" width="380" height="644"><figcaption>Nº 01 · Think and Grow Rich</figcaption></figure>
+          <figure><img class="box-img" src="assets/front-sogr.png" alt="Power Deck Nº 02 box front: The Science of Getting Rich, Wallace D. Wattles, 1910" width="380" height="644"><figcaption>Nº 02 · The Science of Getting Rich</figcaption></figure>
+          <figure>
+            <div class="cbox" role="img" aria-label="Power Deck Nº 03 box front, concept render: The Game of Life and How to Play It, Florence Scovel Shinn, 1925">
+              <div class="plate"><div class="p1"></div><div class="p2"><div class="dia"><i></i></div></div><div class="p3"></div><div class="p4"></div></div>
+              <div class="nn">POWER DECK Nº 03</div><div class="bf">Built from the original text of</div>
+              <div class="tt">THE GAME OF LIFE</div><div class="bar2"></div><div class="au">Florence Scovel Shinn · 1925</div>
+              <div class="tg">LEARN THE PRINCIPLE.<br>USE THE TOOL.<br><em>DAILY.</em></div>
+            </div>
+            <figcaption>Nº 03 · The Game of Life · concept render</figcaption>
+          </figure>
+        </div>
       </div>
     </div>
     <div class="strip">
-      <div><strong>The author’s words</strong>Every line on every card is quoted from the original text and checked against it.</div>
+      <div><strong>The author's words</strong>Every line on every card is quoted from the original text and checked against it.</div>
       <div><strong>One tool per book</strong>Each deck is built around the practice its author prescribed.</div>
       <div><strong>Cards and a field manual</strong>55 to 57 cards and a 16-page manual in each box.</div>
     </div>
   </div>
 </section>
 
-<!-- NIGHT BLOCK -->
-<section class="problem">
+<section class="paper problem">
   <div class="wrap problem-grid">
     <div>
       <p class="label">The gap</p>
-      <h2>You know the principles. Knowing hasn’t moved anything.</h2>
+      <h2>You know the principles. Knowing hasn't moved anything.</h2>
     </div>
     <div class="stack">
-      <p>You’ve read the books. Maybe twice. You can say the ideas out loud: write down what you want, hold the picture, stop competing, watch your words.</p>
+      <p>You've read the books. Maybe twice. You can say the ideas out loud: write down what you want, hold the picture, stop competing, watch your words.</p>
       <p>And the days still look the same, because a book gives you the idea once and then goes back on the shelf.</p>
       <p>The authors saw this coming. Every one of them prescribed a practice. Read this aloud, morning and night. Hold this picture. Speak this word. The practice is the part that got lost between the page and your day.</p>
       <p>Another year of knowing is the expensive option.</p>
@@ -411,7 +509,7 @@ footer p { max-width: 52em; }
 <section class="guide">
   <div class="wrap guide-grid">
     <div>
-      <blockquote>“I am not your teacher. I am a fellow student. What’s in this box worked on me first.”</blockquote>
+      <blockquote>"I am not your teacher. I am a fellow student. What's in this box worked on me first."</blockquote>
       <p class="sig">EA · Power Decks</p>
     </div>
     <div class="stack">
@@ -422,8 +520,7 @@ footer p { max-width: 52em; }
   </div>
 </section>
 
-<!-- AMBER BLOCK -->
-<section class="plan">
+<section class="paper plan">
   <div class="wrap">
     <p class="label">How it works</p>
     <h2>Three steps to start. Four moves to use it.</h2>
@@ -444,10 +541,10 @@ footer p { max-width: 52em; }
         <h3>Anchor</h3><p>Post it, recite it, contemplate it. The central practice, always in view.</p>
       </div>
       <div class="move">
-        <article class="pc study"><div class="band"><div class="row"><b>Study</b><i>Nº 02 · S·01</i></div><span>One of Wattles’ sixteen chapters at a sitting.</span></div>
+        <article class="pc study"><div class="band"><div class="row"><b>Study</b><i>Nº 02 · S·01</i></div><span>One of Wattles' sixteen chapters at a sitting.</span></div>
           <div class="body"><div class="eyebrow">Chapter I</div><div class="title">The Right to Be Rich</div><p class="q">There is nothing wrong in wanting to get rich. The desire for riches is really the desire for a richer, fuller, and more abundant life; and that desire is praiseworthy.</p></div>
           <div class="foot"><b>Power Deck Nº 02 · Wattles, 1910</b><span>Ch. I</span></div></article>
-        <h3>Study</h3><p>One principle per sitting. The book’s own structure, one card at a time.</p>
+        <h3>Study</h3><p>One principle per sitting. The book's own structure, one card at a time.</p>
       </div>
       <div class="move">
         <article class="pc carry"><div class="band"><div class="row"><b>Carry</b><i>Nº 02 · C·01</i></div><span>Take one into the day.</span></div>
@@ -457,7 +554,7 @@ footer p { max-width: 52em; }
       </div>
       <div class="move">
         <article class="pc respond"><div class="band"><div class="row"><b>Respond</b><i>Nº 02 · R·01</i></div><span>When doubt finds you, pull its card.</span></div>
-          <div class="body"><div class="eyebrow">When</div><div class="title">You can’t decide</div><p class="q">When you are in doubt, wait. Fall back on the contemplation of your vision, and increase your faith and purpose; and by all means, in times of doubt and indecision, cultivate gratitude.</p></div>
+          <div class="body"><div class="eyebrow">When</div><div class="title">You can't decide</div><p class="q">When you are in doubt, wait. Fall back on the contemplation of your vision, and increase your faith and purpose; and by all means, in times of doubt and indecision, cultivate gratitude.</p></div>
           <div class="foot"><b>Power Deck Nº 02 · Wattles, 1910</b><span>Ch. XIII</span></div></article>
         <h3>Respond</h3><p>Pulled by name, in the hard moment. You already know which card to reach for.</p>
       </div>
@@ -477,11 +574,11 @@ footer p { max-width: 52em; }
         <p class="nº">Power Deck Nº 01 · Flagship</p>
         <h3>Think and Grow Rich</h3>
         <p class="by">Napoleon Hill · 1937 · The tool: The Statement</p>
-        <p class="forwhen">For when you know what you want and haven’t written it down.</p>
-        <blockquote>“Read your written statement aloud, twice daily, once just before retiring at night, and once after arising in the morning.”<cite>Hill, Ch. 2 · Desire (Anchor card A·02)</cite></blockquote>
+        <p class="forwhen">For when you know what you want and haven't written it down.</p>
+        <blockquote>"Read your written statement aloud, twice daily, once just before retiring at night, and once after arising in the morning."<cite>Hill, Ch. 2 · Desire (Anchor card A·02)</cite></blockquote>
         <ul class="facts">
           <li><span>Practice</span><span>Read your written statement aloud, morning and night.</span></li>
-          <li><span>Study</span><span>Hill’s thirteen steps, one card each.</span></li>
+          <li><span>Study</span><span>Hill's thirteen steps, one card each.</span></li>
           <li><span>Respond</span><span>The six fears, plus five more named states, each with its own card.</span></li>
           <li><span>In the box</span><span>57 cards and a 16-page field manual.</span></li>
         </ul>
@@ -499,12 +596,12 @@ footer p { max-width: 52em; }
         <p class="nº">Power Deck Nº 02</p>
         <h3>The Science of Getting Rich</h3>
         <p class="by">Wallace D. Wattles · 1910 · The tool: The Vision</p>
-        <p class="forwhen">For when getting ahead feels like competing, and you’d rather build.</p>
-        <blockquote>“You are to become a creator, not a competitor; you are going to get what you want, but in such a way that when you get it every other man will have more than he has now.”<cite>Wattles, Ch. V · Increasing Life (Anchor card A·01)</cite></blockquote>
+        <p class="forwhen">For when getting ahead feels like competing, and you'd rather build.</p>
+        <blockquote>"You are to become a creator, not a competitor; you are going to get what you want, but in such a way that when you get it every other man will have more than he has now."<cite>Wattles, Ch. V · Increasing Life (Anchor card A·01)</cite></blockquote>
         <ul class="facts">
           <li><span>Practice</span><span>Hold a clear mental picture of what you want, and contemplate it in leisure hours. Wattles sets no clock.</span></li>
           <li><span>Study</span><span>Sixteen chapters, one card each.</span></li>
-          <li><span>Respond</span><span>Twelve cards for doubt, hurry and indecision, in Wattles’ own “whenever you…” words.</span></li>
+          <li><span>Respond</span><span>Twelve cards for doubt, hurry and indecision, in Wattles' own "whenever you…" words.</span></li>
           <li><span>In the box</span><span>55 cards and a 16-page field manual.</span></li>
         </ul>
         <a class="btn" href="#join">Get the launch note</a>
@@ -529,9 +626,9 @@ footer p { max-width: 52em; }
         <h3>The Game of Life and How to Play It</h3>
         <p class="by">Florence Scovel Shinn · 1925 · The tool: The Word</p>
         <p class="forwhen">For when your own words keep working against you.</p>
-        <blockquote>“Owing to the vibratory power of words, whatever man voices, he begins to attract.”<cite>Shinn, Ch. III · The Power of the Word (Anchor card A·01)</cite></blockquote>
+        <blockquote>"Owing to the vibratory power of words, whatever man voices, he begins to attract."<cite>Shinn, Ch. III · The Power of the Word (Anchor card A·01)</cite></blockquote>
         <ul class="facts">
-          <li><span>Practice</span><span>Speak the word aloud, with power and conviction. Open the day with Shinn’s morning affirmation.</span></li>
+          <li><span>Practice</span><span>Speak the word aloud, with power and conviction. Open the day with Shinn's morning affirmation.</span></li>
           <li><span>Respond</span><span>Situational: pull the play that matches the moment, from lack and fear to a decision that needs a lead.</span></li>
           <li><span>Status</span><span>Card sheet drafted. The box and cards shown here are a concept render, not final art.</span></li>
         </ul>
@@ -554,7 +651,7 @@ footer p { max-width: 52em; }
     <p class="label" style="color:var(--brick)">Why trust it</p>
     <h2>The real thing, made daily.</h2>
     <div class="trust-grid">
-      <div><h3>Verbatim</h3><p>Every card line is the author’s own words. Each one is checked against the source text before it is printed. We name the cards and the states. We never rewrite the author.</p></div>
+      <div><h3>Verbatim</h3><p>Every card line is the author's own words. Each one is checked against the source text before it is printed. We name the cards and the states. We never rewrite the author.</p></div>
       <div><h3>Sourced</h3><p>Every card names its chapter. Hill, 1937. Wattles, 1910. Shinn, 1925. All three texts are in the public domain, which is why you get the original and not our version of it.</p></div>
       <div><h3>Used first</h3><p>The decks exist because the practices worked on the person who built them. The manual in each box opens with that story, in his words.</p></div>
     </div>
@@ -570,14 +667,14 @@ footer p { max-width: 52em; }
       <div class="yes">
         <h3>This is for you if</h3>
         <ul>
-          <li>You’ve read at least one of these books and the ideas haven’t changed your days yet.</li>
+          <li>You've read at least one of these books and the ideas haven't changed your days yet.</li>
           <li>You want a tool you pick up and use, not another thing to read.</li>
-          <li>You’re fine with the authors’ own language, including God, Spirit and Infinite Intelligence.</li>
-          <li>You’d rather practice for ten minutes than study for two hours.</li>
+          <li>You're fine with the authors' own language, including God, Spirit and Infinite Intelligence.</li>
+          <li>You'd rather practice for ten minutes than study for two hours.</li>
         </ul>
       </div>
       <div class="no">
-        <h3>This isn’t for you if</h3>
+        <h3>This isn't for you if</h3>
         <ul>
           <li>You want a summary or a modern paraphrase of the book.</li>
           <li>You want a promise of results. The authors made their claims. The deck gives you the practice to test them.</li>
@@ -593,16 +690,15 @@ footer p { max-width: 52em; }
     <p class="label" style="color:var(--brick)">Questions</p>
     <h2>Before you decide</h2>
     <div class="faq-list">
-      <details><summary>Is this a summary of the book?</summary><p>No. Every line on a card is quoted from the original text, in the author’s words, and checked against it. You still want the book. The deck is how you use it.</p></details>
+      <details><summary>Is this a summary of the book?</summary><p>No. Every line on a card is quoted from the original text, in the author's words, and checked against it. You still want the book. The deck is how you use it.</p></details>
       <details><summary>Which deck should I start with?</summary><p>The one whose problem you recognized above. If two fit, start with Think and Grow Rich. It has the clearest daily rhythm: read your statement aloud, morning and night.</p></details>
-      <details><summary>Do I need to share the authors’ beliefs?</summary><p>You don’t have to, but the cards will use their language. These authors write about God, Spirit and Infinite Intelligence, and the decks keep every word as written. We don’t soften it and we don’t add to it.</p></details>
+      <details><summary>Do I need to share the authors' beliefs?</summary><p>You don't have to, but the cards will use their language. These authors write about God, Spirit and Infinite Intelligence, and the decks keep every word as written. We don't soften it and we don't add to it.</p></details>
       <details><summary>Are the decks affiliated with the authors or their estates?</summary><p>No. The texts are in the public domain. Power Decks are not affiliated with or endorsed by the Napoleon Hill Foundation or any other publisher or estate connected to these authors.</p></details>
       <details><summary>When can I get one, and what will it cost?</summary><p>The decks go on sale Black Friday, Nov 27, 2026. The first run is small, and it is a beta run, so the launch note goes to the list first with price and where to buy.</p></details>
     </div>
   </div>
 </section>
 
-<!-- NIGHT BLOCK bookend -->
 <section class="final" id="join">
   <div class="orn orn-final" aria-hidden="true"><i></i><b></b></div>
   <div class="wrap">
@@ -610,7 +706,7 @@ footer p { max-width: 52em; }
     <h2>Be there when the first run opens.</h2>
     <p class="lede">One email: the date, the price, where to get your deck. Nothing else.</p>
     <form class="signup" id="join-final" novalidate>
-      <label for="em-final" class="sr" style="position:absolute;left:-9999px">Email</label>
+      <label for="em-final" class="sr">Email</label>
       <input id="em-final" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required>
       <button class="btn" type="submit">Get the launch note</button>
     </form>
@@ -630,6 +726,26 @@ footer p { max-width: 52em; }
 
 <script>
 (function () {
+  var root = document.documentElement;
+  var tabs = document.querySelectorAll('.theme-tab');
+
+  function save(t) { try { localStorage.setItem('pd-theme', t); } catch(e) {} }
+  function load() { try { return localStorage.getItem('pd-theme'); } catch(e) { return null; } }
+
+  function apply(t) {
+    root.setAttribute('data-theme', t);
+    save(t);
+    tabs.forEach(function (tab) {
+      tab.setAttribute('aria-pressed', tab.dataset.t === t ? 'true' : 'false');
+    });
+  }
+
+  apply(load() || 'light');
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () { apply(tab.dataset.t); });
+  });
+
   function wire(formId, inputId, msgId) {
     var f = document.getElementById(formId), i = document.getElementById(inputId), m = document.getElementById(msgId);
     if (!f) return;
