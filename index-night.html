@@ -1,11 +1,11 @@
 <!doctype html>
-<!-- Power Decks landing · v2 (light) · 2026-10-01 -->
+<!-- Power Decks landing · v2 (night) · 2026-10-01 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Power Decks turn the classic success books into a daily practice. Every card is the author's own words. Three decks launching Black Friday, Nov 27.">
-<meta name="theme-color" content="#f5f0e6">
+<meta name="theme-color" content="#1b1718">
 <meta property="og:title" content="Power Decks">
 <meta property="og:description" content="You've read the book. Now run it. Three card decks built from the original texts of Think and Grow Rich, The Science of Getting Rich and The Game of Life.">
 <meta property="og:type" content="website">
@@ -14,29 +14,26 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500;700;800;900&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
 <style>
-/* Light version: warm cream ground, night and amber colour blocks, line geometry, hard-offset colour blocks behind product shots.
-   Boldness lives in two places: the amber block and the concentric-diamond line ornaments. Everything else stays quiet. */
+/* Layout concept: a field manual on a night ground. Full-width bands alternate night and cream paper.
+   The reader is the hero; every section answers what they are trying to do and what is in the way.
+   The real print renders (boxes, cards) are the visual proof. Bold in one place: the stacked tagline and the three boxes. */
 :root {
-  color-scheme: light;
+  color-scheme: dark;
   --night: #1b1718;
   --night-2: #262021;
-  --bg: #f5f0e6;
-  --bg-alt: #ede8d6;
-  --ink: #1a1315;
-  --ink-dim: #5a5049;
+  --night-line: #3a3234;
   --cream: #f7f1e1;
-  --fg: #1a1315;
-  --fg-dim: #5a5049;
-  --line: #cec5b0;
+  --cream-2: #ece4cf;
+  --ink: #141011;
+  --fg: #f7f1e1;
+  --fg-dim: #b9afa0;
+  --ink-dim: #4a423b;
   --amber: #d67c20;
-  --amber-deep: #9a4a0b;
-  --on-amber: #2e1d0e;
-  --brick: #922a17;
-  --tint: #e8e0cb;
+  --brick: #aa311d;
   --leaf: #6fb950;
   --leaf-deep: #2f6a1d;
+  --flame: #f46f36;
   --teal: #2fa79a;
-  --teal-deep: #17706a;
   --plum: #7a2f5e;
   --sans: "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
   --serif: "Libre Caslon Text", Georgia, "Times New Roman", serif;
@@ -46,27 +43,21 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  margin: 0; background: var(--bg); color: var(--fg);
+  margin: 0; background: var(--night); color: var(--fg);
   font-family: var(--sans); font-weight: 500; font-size: 17px; line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
-:focus-visible { outline: 3px solid var(--amber-deep); outline-offset: 3px; }
-::selection { background: var(--amber); color: var(--ink); }
-p { text-wrap: pretty; }
+:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
 .wrap { max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
 section { padding-block: clamp(56px, 9vw, 112px); }
-.paper { background: var(--bg-alt); color: var(--ink); }
+.paper { background: var(--cream); color: var(--ink); }
 .paper .dim { color: var(--ink-dim); }
 .dim { color: var(--fg-dim); }
 
 /* type */
-.label { font-weight: 700; text-transform: uppercase; letter-spacing: .22em; font-size: 12px; display: flex; align-items: center; gap: 12px; }
-.label::before { content: ""; width: 28px; height: 2px; background: currentColor; flex: none; }
-.label + h2 { margin-top: 16px; }
-.sr { position: absolute; left: -9999px; }
-.hl { text-decoration: underline; text-decoration-color: var(--amber); text-decoration-thickness: .09em; text-underline-offset: .1em; text-decoration-skip-ink: none; }
+.label { font-weight: 700; text-transform: uppercase; letter-spacing: .22em; font-size: 12px; }
 h1, h2, h3 { margin: 0; text-wrap: balance; }
 h1 { font-weight: 900; font-size: clamp(38px, 6.4vw, 76px); line-height: .98; letter-spacing: -.01em; text-transform: uppercase; }
 h2 { font-weight: 900; font-size: clamp(30px, 4.6vw, 52px); line-height: 1.02; text-transform: uppercase; letter-spacing: -.005em; }
@@ -76,8 +67,8 @@ h3 { font-weight: 800; font-size: 20px; line-height: 1.2; }
 p { margin: 0; }
 .stack > * + * { margin-top: 1.1em; }
 
-/* nav bar — thick bottom rule */
-.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); border-bottom: 4px solid var(--ink); }
+/* top bar */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--night); border-bottom: 1px solid var(--night-line); }
 .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
 .mark { font-weight: 800; letter-spacing: .34em; font-size: 14px; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
 .beta { display: inline-block; border: 1px solid currentColor; padding: 3px 9px; font-weight: 700; font-size: 11px; letter-spacing: .26em; text-transform: uppercase; }
@@ -87,142 +78,85 @@ p { margin: 0; }
   appearance: none; border: 0; cursor: pointer; font: inherit; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; font-size: 14px;
   background: var(--amber); color: var(--ink); padding: 16px 26px; min-height: 52px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center;
 }
-.btn { transition: background-color .15s, transform .15s; }
 .btn:hover { background: #e68a2c; }
-.btn:active { transform: translateY(1px); }
 .btn.small { padding: 10px 16px; min-height: 40px; font-size: 12px; }
 .signup { display: flex; gap: 10px; flex-wrap: wrap; max-width: 560px; }
 .signup input {
   flex: 1 1 240px; min-width: 0; min-height: 52px; padding: 0 16px; font: inherit; font-weight: 500; font-size: 16px;
-  background: #fff; color: var(--ink); border: 1px solid var(--ink); border-radius: 0;
+  background: var(--night-2); color: var(--fg); border: 1px solid var(--fg-dim); border-radius: 0;
 }
 .signup input::placeholder { color: var(--fg-dim); }
+.paper .signup input { background: #fff; color: var(--ink); border-color: var(--ink); }
 .fine { font-size: 14px; color: var(--fg-dim); margin-top: 12px; }
+.paper .fine { color: var(--ink-dim); }
 .signup-msg { margin-top: 12px; font-weight: 700; min-height: 1.5em; font-size: 15px; }
 
-/* on night-block sections */
-.night-block .signup input { background: var(--night-2); color: var(--cream); border-color: #5a5049; }
-.night-block .signup input::placeholder { color: #8a8078; }
-.night-block .fine { color: #8a8078; }
-
-/* hero — thick top rule, light bg */
-.hero { padding-block: clamp(48px, 7vw, 96px) clamp(48px, 7vw, 96px); position: relative; overflow: hidden; }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; position: relative; }
-.hero .label { color: var(--amber-deep); }
+/* hero */
+.hero { padding-block: clamp(40px, 6vw, 80px) clamp(48px, 7vw, 96px); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.hero .label { color: var(--amber); }
 .hero h1 { margin-top: 18px; }
-.hero .lede { margin-top: 24px; }
+.hero .lede { margin-top: 24px; color: var(--fg); }
 .hero .signup { margin-top: 32px; }
 .shelf { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(8px, 1.6vw, 20px); align-items: end; }
 .shelf figure { margin: 0; }
 .shelf figure:nth-child(2) { transform: translateY(-5%); }
-.box-img { border: 1px solid var(--ink); width: 100%; }
-.shelf { position: relative; z-index: 1; }
-.shelf figure:nth-child(1) .box-img { box-shadow: 8px 8px 0 var(--amber); }
-.shelf figure:nth-child(2) .box-img { box-shadow: 8px 8px 0 var(--leaf); }
-.shelf figure:nth-child(3) .cbox { box-shadow: 8px 8px 0 var(--teal); }
-.orn { position: absolute; pointer-events: none; aspect-ratio: 1; }
-.orn::before, .orn::after, .orn i { content: ""; position: absolute; border: 1.5px solid currentColor; transform: rotate(45deg); }
-.orn::before { inset: 0; }
-.orn::after { inset: 17%; }
-.orn i { inset: 34%; }
-.shelf-wrap { position: relative; }
-.orn-hero { color: #cfc6ae; width: 74%; left: 50%; top: 52%; transform: translate(-50%, -50%); z-index: 0; }
-.shelf figcaption { margin-top: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; font-size: 11px; color: var(--fg-dim); }
+.box-img { border: 1px solid #4a4244; width: 100%; }
+.shelf figcaption { margin-top: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; font-size: 11px; color: var(--fg-dim); }
+.strip { margin-top: clamp(40px, 6vw, 72px); border-top: 1px solid var(--night-line); padding-top: 22px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; font-size: 15px; color: var(--fg-dim); }
+.strip strong { display: block; color: var(--fg); font-weight: 800; text-transform: uppercase; letter-spacing: .1em; font-size: 13px; margin-bottom: 4px; }
 
-/* strip — boxed cells with colored top accent rules (line geometry) */
-.strip {
-  margin-top: clamp(40px, 6vw, 72px);
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0; border: 2px solid var(--ink);
-  font-size: 15px; color: var(--fg-dim);
-}
-.strip > div { padding: 18px 20px; }
-.strip > div + div { border-left: 1px solid var(--ink); }
-.strip { background: #fbf8ef; }
-.strip > div:nth-child(1) { border-top: 4px solid var(--amber); }
-.strip > div:nth-child(2) { border-top: 4px solid var(--teal); }
-.strip > div:nth-child(3) { border-top: 4px solid var(--brick); }
-.strip strong { display: block; color: var(--ink); font-weight: 800; text-transform: uppercase; letter-spacing: .1em; font-size: 13px; margin-bottom: 4px; }
-
-/* problem — NIGHT BLOCK */
-.problem { background: var(--night); color: var(--cream); position: relative; overflow: hidden; }
-.problem .wrap { position: relative; }
+/* problem */
 .problem-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(28px, 6vw, 88px); }
-.problem h2 { color: var(--cream); }
-.problem .label { color: var(--amber); }
-.problem .stack { font-size: 19px; line-height: 1.6; color: #c8bfb0; }
-.problem .stack p:last-child { font-weight: 800; color: var(--cream); }
+.problem h2 { color: var(--ink); }
+.problem .stack { font-size: 19px; line-height: 1.6; }
+.problem .stack p:last-child { font-weight: 800; }
 
-/* guide — amber left-rule on blockquote */
-.guide { border-top: 5px solid var(--amber); }
+/* guide */
 .guide-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(28px, 6vw, 88px); align-items: start; }
-.guide blockquote { margin: 0; font-family: var(--serif); font-size: clamp(22px, 3vw, 32px); line-height: 1.35; border-left: 5px solid var(--amber); padding-left: 24px; }
-.guide .sig { margin-top: 20px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; font-size: 13px; color: var(--amber-deep); }
-.guide .stack { font-size: 18px; }
+.guide blockquote { margin: 0; font-family: var(--serif); font-size: clamp(22px, 3vw, 32px); line-height: 1.35; }
+.guide .sig { margin-top: 20px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; font-size: 13px; color: var(--amber); }
+.guide .stack { font-size: 18px; color: var(--fg); }
 
-/* plan — AMBER BLOCK */
-.plan { background: var(--amber); color: var(--ink); }
-.plan .label { color: var(--ink); }
+/* plan */
 .plan h2 { max-width: 14em; }
-.plan .dim, .plan p.dim { color: var(--on-amber); }
-
-/* steps — outlined square numbers (line geometry) */
 .steps { margin: 40px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); counter-reset: s; }
-.steps li { border-top: 2px solid var(--ink); padding-top: 18px; counter-increment: s; }
-.steps li::before {
-  content: counter(s, decimal-leading-zero);
-  display: flex; align-items: center; justify-content: center;
-  width: 36px; height: 36px;
-  border: 2px solid var(--ink);
-  font-weight: 700; font-size: 13px; letter-spacing: .05em;
-  margin-bottom: 14px;
-}
+.steps li { border-top: 3px solid var(--ink); padding-top: 16px; counter-increment: s; }
+.steps li::before { content: "Step " counter(s); display: block; font-weight: 700; text-transform: uppercase; letter-spacing: .2em; font-size: 12px; color: var(--brick); margin-bottom: 8px; }
 .steps h3 { margin-bottom: 8px; }
-.steps li::before { background: var(--cream); }
 .moves-head { margin-top: clamp(56px, 8vw, 96px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: end; }
 .moves { margin-top: 32px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 2vw, 24px); }
-.move h3 { margin-top: 26px; text-transform: uppercase; letter-spacing: .08em; font-size: 15px; }
-.move > p { margin-top: 4px; font-size: 15px; color: var(--on-amber); }
-.moves .pc { box-shadow: 0 0 0 1px var(--ink), 7px 7px 0 var(--ink); }
+.move h3 { margin-top: 14px; text-transform: uppercase; letter-spacing: .08em; font-size: 15px; }
+.move p { margin-top: 4px; font-size: 15px; color: var(--ink-dim); }
 
-/* css cards — cream paper, unchanged from dark version */
+/* css cards, drawn to the print rails */
 .pc { container-type: inline-size; width: 100%; aspect-ratio: 440 / 760; background: var(--cream); color: var(--ink); position: relative; box-shadow: 0 0 0 1px rgba(20,16,17,.22); display: flex; flex-direction: column; overflow: hidden; }
 .pc .band { height: 13.7%; padding: 0 9.1cqw; display: flex; flex-direction: column; justify-content: center; }
 .pc .band .row { display: flex; justify-content: space-between; align-items: baseline; }
 .pc .band b { font-weight: 800; letter-spacing: .2em; text-transform: uppercase; font-size: 5.2cqw; }
 .pc .band i { font-style: normal; font-weight: 800; letter-spacing: .14em; font-size: 2.9cqw; }
 .pc .band span { font-size: 3.1cqw; font-weight: 500; }
-.pc.anchor .band { background: #6fb950; color: var(--ink); }
+.pc.anchor .band { background: var(--leaf); color: var(--ink); }
 .pc.study .band { background: var(--ink); color: var(--cream); }
 .pc.carry .band { background: transparent; color: var(--ink); border-top: 3px solid var(--ink); }
-.pc.respond .band { background: #aa311d; color: var(--cream); }
+.pc.respond .band { background: var(--brick); color: var(--cream); }
 .pc .body { padding: 8cqw 9.1cqw 0; flex: 1; display: flex; flex-direction: column; }
 .pc .eyebrow { font-weight: 700; text-transform: uppercase; letter-spacing: .2em; font-size: 2.8cqw; color: var(--leaf-deep); }
-.pc.respond .eyebrow { color: #aa311d; }
+.pc.respond .eyebrow { color: var(--brick); }
 .pc .title { font-weight: 800; text-transform: uppercase; font-size: 5.4cqw; line-height: 1.1; margin-top: 1.4cqw; }
 .pc .q { font-family: var(--serif); font-size: 6.6cqw; line-height: 1.3; margin-top: 4.5cqw; }
 .pc .foot { margin: auto 9.1cqw 6cqw; border-top: 1px solid var(--ink); padding-top: 2.8cqw; display: flex; justify-content: space-between; font-size: 2.7cqw; font-weight: 500; }
-.pc .foot b::before { content: ""; display: inline-block; width: 1.8cqw; height: 1.8cqw; border-radius: 50%; background: #aa311d; margin-right: 1.6cqw; vertical-align: .05em; }
+.pc .foot b::before { content: ""; display: inline-block; width: 1.8cqw; height: 1.8cqw; border-radius: 50%; background: var(--brick); margin-right: 1.6cqw; vertical-align: .05em; }
 .pc .foot b { font-weight: 500; }
 
-/* decks — thick colored top borders per deck */
-.decks { border-top: 5px solid var(--ink); }
-.decks .label { color: var(--amber-deep); }
+/* decks */
 .decks h2 { max-width: 13em; }
 .decks .lede { margin-top: 18px; color: var(--fg-dim); }
-.deck { margin-top: clamp(48px, 7vw, 88px); padding-top: clamp(32px, 4vw, 48px); border-top: 4px solid; display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr) minmax(0, 340px); gap: clamp(24px, 4vw, 52px); align-items: start; }
-.deck-cards { position: sticky; top: calc(88px + env(safe-area-inset-top, 0px)); }
-.deck .art { position: sticky; top: calc(88px + env(safe-area-inset-top, 0px)); }
-.deck.d1 .box-img { box-shadow: 8px 8px 0 var(--amber); }
-.deck.d2 .box-img { box-shadow: 8px 8px 0 var(--leaf); }
-.deck.d3 .cbox { box-shadow: 8px 8px 0 var(--teal); }
-.deck.d1 { border-top-color: var(--amber); }
-.deck.d2 { border-top-color: var(--leaf); }
-.deck.d3 { border-top-color: var(--teal); }
+.deck { margin-top: clamp(48px, 7vw, 88px); padding-top: clamp(32px, 4vw, 48px); border-top: 1px solid var(--night-line); display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr) minmax(0, 300px); gap: clamp(24px, 4vw, 56px); align-items: start; }
 .deck .nº { font-weight: 700; text-transform: uppercase; letter-spacing: .24em; font-size: 12px; }
-.deck.d1 .nº { color: var(--amber-deep); }
-.deck.d2 .nº { color: var(--leaf-deep); }
-.deck.d3 .nº { color: var(--teal-deep); }
+.deck.d1 .nº { color: var(--amber); }
+.deck.d2 .nº { color: var(--leaf); }
+.deck.d3 .nº { color: var(--teal); }
 .deck h3 { font-weight: 900; font-size: clamp(28px, 3.6vw, 40px); text-transform: uppercase; line-height: 1.02; margin-top: 8px; }
 .deck .by { margin-top: 8px; color: var(--fg-dim); font-size: 15px; }
 .deck .forwhen { margin-top: 22px; font-size: 20px; line-height: 1.4; font-weight: 700; max-width: 28em; }
@@ -230,20 +164,18 @@ p { margin: 0; }
 .deck.d1 blockquote { border-color: var(--amber); }
 .deck.d2 blockquote { border-color: var(--leaf); }
 .deck.d3 blockquote { border-color: var(--teal); }
-.deck blockquote cite { display: block; margin-top: 10px; font-family: var(--sans); font-style: normal; font-size: 13px; color: var(--fg-dim); letter-spacing: .04em; }
+.deck blockquote cite { display: block; margin-top: 8px; font-family: var(--sans); font-style: normal; font-size: 13px; color: var(--fg-dim); letter-spacing: .04em; }
 .facts { margin: 24px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 16px; }
-.facts li { display: grid; grid-template-columns: 7.5em 1fr; gap: 12px; padding-top: 8px; border-top: 1px solid var(--line); }
+.facts li { display: grid; grid-template-columns: 7.5em 1fr; gap: 12px; padding-top: 8px; border-top: 1px solid var(--night-line); }
 .facts li span:first-child { font-weight: 700; text-transform: uppercase; letter-spacing: .16em; font-size: 12px; color: var(--fg-dim); padding-top: 3px; }
-.deck .btn { margin-top: 28px; }
-.deck .status { margin-top: 20px; }
+.deck .btn { margin-top: 26px; }
 .deck-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-.deck-cards img, .deck-cards .pc { border: 1px solid var(--ink); box-shadow: 5px 5px 0 var(--tint); }
-.deck-cards .pc { box-shadow: 5px 5px 0 var(--tint); }
+.deck-cards img { border: 1px solid #4a4244; }
+.deck-cards.one { grid-template-columns: minmax(0, 1fr); }
+.status { display: inline-block; margin-top: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .18em; font-size: 11px; border: 1px solid var(--teal); color: var(--teal); padding: 3px 8px; }
 
-.status { display: inline-block; margin-top: 0; font-weight: 700; text-transform: uppercase; letter-spacing: .18em; font-size: 11px; border: 1px solid var(--teal-deep); color: var(--teal-deep); padding: 3px 8px; }
-
-/* css box Nº 03 — kept dark, it's a product render */
-.cbox { container-type: inline-size; aspect-ratio: 2875 / 4875; background: var(--night); border: 1px solid var(--line); width: 100%; position: relative; color: #fff; text-align: center; overflow: hidden; }
+/* css box for Nº 03 (concept render): front face only, 2.875 x 4.875 in, same proportions as the print box */
+.cbox { container-type: inline-size; aspect-ratio: 2875 / 4875; background: var(--night); border: 1px solid #4a4244; width: 100%; position: relative; color: #fff; text-align: center; overflow: hidden; }
 .cbox .plate { position: absolute; top: 0; left: 0; right: 0; height: 43.5%; display: grid; grid-template-columns: 55% 45%; grid-template-rows: 55% 45%; }
 .cbox .plate div { min-width: 0; }
 .cbox .p1 { grid-column: 1; grid-row: 1 / 3; background: var(--plum); }
@@ -263,28 +195,20 @@ p { margin: 0; }
 .cbox .tg { position: absolute; top: 83.4%; left: 0; right: 0; font-weight: 800; letter-spacing: .12em; font-size: 5.4cqw; line-height: 1.22; padding-left: .12em; }
 .cbox .tg em { font-style: normal; color: var(--teal); }
 
-/* trust — bg-alt, colored top rules per card */
-.trust { border-top: 5px solid var(--ink); }
+/* trust */
 .trust h2 { max-width: 12em; }
 .trust-grid { margin-top: 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); }
-.trust-grid > div { padding-top: 18px; }
-.trust-grid > div:nth-child(1) { border-top: 4px solid var(--amber); }
-.trust-grid > div:nth-child(2) { border-top: 4px solid var(--leaf-deep); }
-.trust-grid > div:nth-child(3) { border-top: 4px solid var(--teal-deep); }
+.trust-grid > div { border-top: 3px solid var(--ink); padding-top: 16px; }
 .trust-grid h3 { text-transform: uppercase; letter-spacing: .08em; font-size: 15px; margin-bottom: 8px; }
 .trust-grid p { color: var(--ink-dim); }
-.fidelity { margin-top: 56px; padding-left: 24px; border-left: 5px solid var(--amber); margin-bottom: 0; font-family: var(--serif); font-size: clamp(20px, 2.6vw, 28px); line-height: 1.4; max-width: 30em; }
+.fidelity { margin-top: 48px; font-family: var(--serif); font-size: clamp(20px, 2.6vw, 28px); line-height: 1.4; max-width: 30em; }
 
 /* fit */
-.fit { border-top: 5px solid var(--teal-deep); }
 .fit-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 72px); margin-top: 40px; }
-.fit-grid h3 { text-transform: uppercase; letter-spacing: .14em; font-size: 13px; padding-bottom: 12px; border-bottom: 2px solid var(--line); }
+.fit-grid h3 { text-transform: uppercase; letter-spacing: .14em; font-size: 13px; padding-bottom: 12px; border-bottom: 1px solid var(--night-line); }
 .fit-grid ul { list-style: none; margin: 0; padding: 0; }
-.fit-grid li { padding: 14px 0 14px 30px; border-bottom: 1px solid var(--line); position: relative; }
-.fit-grid li::before { content: ""; position: absolute; left: 4px; top: 22px; width: 9px; height: 9px; transform: rotate(45deg); }
-.fit-grid .yes li::before { background: var(--leaf-deep); }
-.fit-grid .no li::before { border: 1.5px solid var(--fg-dim); }
-.fit-grid .yes h3 { color: var(--leaf-deep); border-bottom-color: var(--leaf-deep); }
+.fit-grid li { padding: 14px 0; border-bottom: 1px solid var(--night-line); }
+.fit-grid .yes h3 { color: var(--leaf); }
 .fit-grid .no h3 { color: var(--fg-dim); }
 .fit-grid .no li { color: var(--fg-dim); }
 
@@ -292,57 +216,45 @@ p { margin: 0; }
 .faq-list { margin-top: 36px; max-width: 800px; }
 .faq-list details { border-top: 1px solid var(--ink); }
 .faq-list details:last-child { border-bottom: 1px solid var(--ink); }
-.faq-list summary { cursor: pointer; padding: 22px 0; font-weight: 800; font-size: 19px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.faq-list summary { cursor: pointer; padding: 20px 0; font-weight: 800; font-size: 19px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
 .faq-list summary::-webkit-details-marker { display: none; }
-.faq-list summary:hover { color: var(--amber-deep); }
-.faq-list details[open] summary { color: var(--amber-deep); }
 .faq-list summary::after { content: "+"; font-weight: 500; font-size: 26px; line-height: 1; }
 .faq-list details[open] summary::after { content: "\2212"; }
 .faq-list details p { padding: 0 0 22px; max-width: 38em; color: var(--ink-dim); font-size: 17px; }
 
-/* final — NIGHT BLOCK (bookend) */
-.final { background: var(--night); color: var(--cream); text-align: left; position: relative; overflow: hidden; }
-.final .wrap { position: relative; z-index: 1; }
-.orn-final { color: rgba(247,241,225,.16); width: min(340px, 56vw); right: 9%; top: 50%; transform: translateY(-50%); }
-.final .lede { max-width: 24em; }
-.orn-final i { border-color: currentColor; }
-.orn-final b { position: absolute; left: 50%; top: 50%; width: 9%; aspect-ratio: 1; background: var(--amber); transform: translate(-50%, -50%) rotate(45deg); }
-.final h2 { max-width: 11em; color: var(--cream); }
-.final .lede { margin-top: 20px; color: #b9afa0; }
+/* final */
+.final { text-align: left; }
+.final h2 { max-width: 11em; }
+.final .lede { margin-top: 20px; color: var(--fg-dim); }
 .final .signup { margin-top: 32px; }
-.final .signup input { background: var(--night-2); color: var(--cream); border-color: #5a5049; }
-.final .signup input::placeholder { color: #8a8078; }
-.stack-tag { margin-top: 48px; padding-top: 24px; border-top: 1px solid #4a4244; max-width: 420px; font-weight: 800; text-transform: uppercase; letter-spacing: .14em; font-size: clamp(18px, 2.6vw, 26px); line-height: 1.3; }
+.stack-tag { margin-top: 40px; font-weight: 800; text-transform: uppercase; letter-spacing: .14em; font-size: clamp(18px, 2.6vw, 26px); line-height: 1.3; }
 .stack-tag em { font-style: normal; color: var(--amber); }
 
-footer { border-top: 4px solid var(--ink); padding-block: 36px 52px; font-size: 14px; color: var(--fg-dim); background: var(--bg); }
+footer { border-top: 1px solid var(--night-line); padding-block: 40px 56px; font-size: 14px; color: var(--fg-dim); }
 footer .wrap { display: grid; gap: 14px; }
 footer .mark { color: var(--fg); }
 footer p { max-width: 52em; }
 
 @media (max-width: 900px) {
-  .orn-hero { display: none; }
   .hero-grid, .problem-grid, .guide-grid, .moves-head { grid-template-columns: minmax(0, 1fr); }
   .steps, .trust-grid, .fit-grid { grid-template-columns: minmax(0, 1fr); }
   .moves { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .deck { grid-template-columns: minmax(0, 200px) minmax(0, 1fr); }
-  .deck .art { position: static; }
-  .deck .deck-cards { grid-column: 1 / -1; max-width: 420px; position: static; }
-  .strip { grid-template-columns: minmax(0, 1fr); }
-  .strip > div + div { border-left: none; border-top: 1px solid var(--ink); }
+  .deck .deck-cards { grid-column: 1 / -1; max-width: 420px; }
+  .strip { grid-template-columns: minmax(0, 1fr); gap: 14px; }
 }
 @media (max-width: 560px) {
   .deck { grid-template-columns: minmax(0, 1fr); }
-  .deck .art { max-width: 200px; position: static; }
+  .deck .art { max-width: 200px; }
   .facts li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
   .bar .btn { display: none; }
   .moves { gap: 12px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
+
 </head>
 <body>
-
 <header class="bar">
   <div class="wrap">
     <a class="mark" href="#top">Power Decks</a>
@@ -352,13 +264,14 @@ footer p { max-width: 52em; }
 
 <main id="top">
 
+<!-- 1. HERO: the reader, the outcome, one action -->
 <section class="hero">
   <div class="wrap">
     <div class="hero-grid">
       <div>
         <p class="label">Launching Black Friday, Nov 27</p>
-        <h1>You’ve read the book. <span class="hl">Now run it.</span></h1>
-        <p class="lede">Power Decks turn the classic success books into a daily practice. Every card is the author’s own words. Pick the deck for where you are, and use it every day.</p>
+        <h1>You've read the book. Now run it.</h1>
+        <p class="lede">Power Decks turn the classic success books into a daily practice. Every card is the author's own words. Pick the deck for where you are, and use it every day.</p>
         <form class="signup" id="join-hero" novalidate>
           <label for="em-hero" class="sr" style="position:absolute;left:-9999px">Email</label>
           <input id="em-hero" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required>
@@ -367,8 +280,6 @@ footer p { max-width: 52em; }
         <p class="signup-msg" id="msg-hero" role="status"></p>
         <p class="fine">One email when the decks go on sale. The first run is small.</p>
       </div>
-      <div class="shelf-wrap">
-      <div class="orn orn-hero" aria-hidden="true"><i></i></div>
       <div class="shelf" aria-label="The three launch decks">
         <figure><img class="box-img" src="assets/front-tagr.png" alt="Power Deck Nº 01 box front: Think and Grow Rich, Napoleon Hill, 1937" width="380" height="644"><figcaption>Nº 01 · Think and Grow Rich</figcaption></figure>
         <figure><img class="box-img" src="assets/front-sogr.png" alt="Power Deck Nº 02 box front: The Science of Getting Rich, Wallace D. Wattles, 1910" width="380" height="644"><figcaption>Nº 02 · The Science of Getting Rich</figcaption></figure>
@@ -378,29 +289,31 @@ footer p { max-width: 52em; }
             <div class="nn">POWER DECK Nº 03</div><div class="bf">Built from the original text of</div>
             <div class="tt">THE GAME OF LIFE</div><div class="bar2"></div><div class="au">Florence Scovel Shinn · 1925</div>
             <div class="tg">LEARN THE PRINCIPLE.<br>USE THE TOOL.<br><em>DAILY.</em></div>
+            
           </div>
           <figcaption>Nº 03 · The Game of Life · concept render</figcaption>
         </figure>
       </div>
-      </div>
     </div>
     <div class="strip">
-      <div><strong>The author’s words</strong>Every line on every card is quoted from the original text and checked against it.</div>
-      <div><strong>One tool per book</strong>Each deck is built around the practice its author prescribed.</div>
+      <div><strong>The author's words</strong>Every line on every card is quoted from the original text and checked against it.</div>
+      <div>
+        <strong>One tool per book</strong>Each deck is built around the practice its author prescribed.
+      </div>
       <div><strong>Cards and a field manual</strong>55 to 57 cards and a 16-page manual in each box.</div>
     </div>
   </div>
 </section>
 
-<!-- NIGHT BLOCK -->
-<section class="problem">
+<!-- 2. PROBLEM: in the reader's language -->
+<section class="paper problem">
   <div class="wrap problem-grid">
     <div>
-      <p class="label">The gap</p>
-      <h2>You know the principles. Knowing hasn’t moved anything.</h2>
+      <p class="label" style="color:var(--brick)">The gap</p>
+      <h2 style="margin-top:14px">You know the principles. Knowing hasn't moved anything.</h2>
     </div>
     <div class="stack">
-      <p>You’ve read the books. Maybe twice. You can say the ideas out loud: write down what you want, hold the picture, stop competing, watch your words.</p>
+      <p>You've read the books. Maybe twice. You can say the ideas out loud: write down what you want, hold the picture, stop competing, watch your words.</p>
       <p>And the days still look the same, because a book gives you the idea once and then goes back on the shelf.</p>
       <p>The authors saw this coming. Every one of them prescribed a practice. Read this aloud, morning and night. Hold this picture. Speak this word. The practice is the part that got lost between the page and your day.</p>
       <p>Another year of knowing is the expensive option.</p>
@@ -408,10 +321,11 @@ footer p { max-width: 52em; }
   </div>
 </section>
 
+<!-- 3. GUIDE: empathy then authority, one voice -->
 <section class="guide">
   <div class="wrap guide-grid">
     <div>
-      <blockquote>“I am not your teacher. I am a fellow student. What’s in this box worked on me first.”</blockquote>
+      <blockquote>“I am not your teacher. I am a fellow student. What's in this box worked on me first.”</blockquote>
       <p class="sig">EA · Power Decks</p>
     </div>
     <div class="stack">
@@ -422,18 +336,21 @@ footer p { max-width: 52em; }
   </div>
 </section>
 
-<!-- AMBER BLOCK -->
-<section class="plan">
+<!-- 4. PLAN: three steps, then the four moves -->
+<section class="paper plan">
   <div class="wrap">
-    <p class="label">How it works</p>
-    <h2>Three steps to start. Four moves to use it.</h2>
+    <p class="label" style="color:var(--brick)">How it works</p>
+    <h2 style="margin-top:14px">Three steps to start. Four moves to use it.</h2>
     <ol class="steps">
       <li><h3>Pick the deck that fits</h3><p class="dim">Each book answers a different problem. The next section tells you which is yours.</p></li>
       <li><h3>Read the manual, then break the seal</h3><p class="dim">The cards come sealed. The 16-page manual comes first: who wrote it, what the practice is, when to run it.</p></li>
       <li><h3>Run the four moves</h3><p class="dim">Pull your Anchor, set your rhythm, and start the same day. The deck does the structuring.</p></li>
     </ol>
+
     <div class="moves-head">
-      <div><h2 style="font-size:clamp(26px,3.6vw,40px)">The same four moves in every deck</h2></div>
+      <div>
+        <h2 style="font-size:clamp(26px,3.6vw,40px)">The same four moves in every deck</h2>
+      </div>
       <p class="dim">Shown here from Nº 02, The Science of Getting Rich. Every card has a code, so you can find it again.</p>
     </div>
     <div class="moves">
@@ -444,10 +361,10 @@ footer p { max-width: 52em; }
         <h3>Anchor</h3><p>Post it, recite it, contemplate it. The central practice, always in view.</p>
       </div>
       <div class="move">
-        <article class="pc study"><div class="band"><div class="row"><b>Study</b><i>Nº 02 · S·01</i></div><span>One of Wattles’ sixteen chapters at a sitting.</span></div>
+        <article class="pc study"><div class="band"><div class="row"><b>Study</b><i>Nº 02 · S·01</i></div><span>One of Wattles' sixteen chapters at a sitting.</span></div>
           <div class="body"><div class="eyebrow">Chapter I</div><div class="title">The Right to Be Rich</div><p class="q">There is nothing wrong in wanting to get rich. The desire for riches is really the desire for a richer, fuller, and more abundant life; and that desire is praiseworthy.</p></div>
           <div class="foot"><b>Power Deck Nº 02 · Wattles, 1910</b><span>Ch. I</span></div></article>
-        <h3>Study</h3><p>One principle per sitting. The book’s own structure, one card at a time.</p>
+        <h3>Study</h3><p>One principle per sitting. The book's own structure, one card at a time.</p>
       </div>
       <div class="move">
         <article class="pc carry"><div class="band"><div class="row"><b>Carry</b><i>Nº 02 · C·01</i></div><span>Take one into the day.</span></div>
@@ -457,7 +374,7 @@ footer p { max-width: 52em; }
       </div>
       <div class="move">
         <article class="pc respond"><div class="band"><div class="row"><b>Respond</b><i>Nº 02 · R·01</i></div><span>When doubt finds you, pull its card.</span></div>
-          <div class="body"><div class="eyebrow">When</div><div class="title">You can’t decide</div><p class="q">When you are in doubt, wait. Fall back on the contemplation of your vision, and increase your faith and purpose; and by all means, in times of doubt and indecision, cultivate gratitude.</p></div>
+          <div class="body"><div class="eyebrow">When</div><div class="title">You can't decide</div><p class="q">When you are in doubt, wait. Fall back on the contemplation of your vision, and increase your faith and purpose; and by all means, in times of doubt and indecision, cultivate gratitude.</p></div>
           <div class="foot"><b>Power Deck Nº 02 · Wattles, 1910</b><span>Ch. XIII</span></div></article>
         <h3>Respond</h3><p>Pulled by name, in the hard moment. You already know which card to reach for.</p>
       </div>
@@ -465,10 +382,11 @@ footer p { max-width: 52em; }
   </div>
 </section>
 
+<!-- 5. THE THREE DECKS: framed by the reader's situation -->
 <section class="decks" id="decks">
   <div class="wrap">
-    <p class="label">Pick your deck</p>
-    <h2>Three books. Three different tools.</h2>
+    <p class="label" style="color:var(--amber)">Pick your deck</p>
+    <h2 style="margin-top:14px">Three books. Three different tools.</h2>
     <p class="lede">The authors never agreed on one mechanism. They agreed that a mechanism, used daily, changes a life. Start with the problem you recognize.</p>
 
     <article class="deck d1">
@@ -477,11 +395,11 @@ footer p { max-width: 52em; }
         <p class="nº">Power Deck Nº 01 · Flagship</p>
         <h3>Think and Grow Rich</h3>
         <p class="by">Napoleon Hill · 1937 · The tool: The Statement</p>
-        <p class="forwhen">For when you know what you want and haven’t written it down.</p>
+        <p class="forwhen">For when you know what you want and haven't written it down.</p>
         <blockquote>“Read your written statement aloud, twice daily, once just before retiring at night, and once after arising in the morning.”<cite>Hill, Ch. 2 · Desire (Anchor card A·02)</cite></blockquote>
         <ul class="facts">
           <li><span>Practice</span><span>Read your written statement aloud, morning and night.</span></li>
-          <li><span>Study</span><span>Hill’s thirteen steps, one card each.</span></li>
+          <li><span>Study</span><span>Hill's thirteen steps, one card each.</span></li>
           <li><span>Respond</span><span>The six fears, plus five more named states, each with its own card.</span></li>
           <li><span>In the box</span><span>57 cards and a 16-page field manual.</span></li>
         </ul>
@@ -499,12 +417,12 @@ footer p { max-width: 52em; }
         <p class="nº">Power Deck Nº 02</p>
         <h3>The Science of Getting Rich</h3>
         <p class="by">Wallace D. Wattles · 1910 · The tool: The Vision</p>
-        <p class="forwhen">For when getting ahead feels like competing, and you’d rather build.</p>
+        <p class="forwhen">For when getting ahead feels like competing, and you'd rather build.</p>
         <blockquote>“You are to become a creator, not a competitor; you are going to get what you want, but in such a way that when you get it every other man will have more than he has now.”<cite>Wattles, Ch. V · Increasing Life (Anchor card A·01)</cite></blockquote>
         <ul class="facts">
           <li><span>Practice</span><span>Hold a clear mental picture of what you want, and contemplate it in leisure hours. Wattles sets no clock.</span></li>
           <li><span>Study</span><span>Sixteen chapters, one card each.</span></li>
-          <li><span>Respond</span><span>Twelve cards for doubt, hurry and indecision, in Wattles’ own “whenever you…” words.</span></li>
+          <li><span>Respond</span><span>Twelve cards for doubt, hurry and indecision, in Wattles' own “whenever you…” words.</span></li>
           <li><span>In the box</span><span>55 cards and a 16-page field manual.</span></li>
         </ul>
         <a class="btn" href="#join">Get the launch note</a>
@@ -522,6 +440,7 @@ footer p { max-width: 52em; }
           <div class="nn">POWER DECK Nº 03</div><div class="bf">Built from the original text of</div>
           <div class="tt">THE GAME OF LIFE</div><div class="bar2"></div><div class="au">Florence Scovel Shinn · 1925</div>
           <div class="tg">LEARN THE PRINCIPLE.<br>USE THE TOOL.<br><em>DAILY.</em></div>
+          
         </div>
       </div>
       <div>
@@ -531,30 +450,29 @@ footer p { max-width: 52em; }
         <p class="forwhen">For when your own words keep working against you.</p>
         <blockquote>“Owing to the vibratory power of words, whatever man voices, he begins to attract.”<cite>Shinn, Ch. III · The Power of the Word (Anchor card A·01)</cite></blockquote>
         <ul class="facts">
-          <li><span>Practice</span><span>Speak the word aloud, with power and conviction. Open the day with Shinn’s morning affirmation.</span></li>
+          <li><span>Practice</span><span>Speak the word aloud, with power and conviction. Open the day with Shinn's morning affirmation.</span></li>
           <li><span>Respond</span><span>Situational: pull the play that matches the moment, from lack and fear to a decision that needs a lead.</span></li>
-          <li><span>Status</span><span>Card sheet drafted. The box and cards shown here are a concept render, not final art.</span></li>
+          <li><span>Status</span><span>Card sheet drafted. Box and cards are in design.</span></li>
         </ul>
+        <span class="status">Concept render</span><br>
         <a class="btn" href="#join">Get the launch note</a>
       </div>
-      <div class="deck-cards">
-        <article class="pc anchor"><div class="band" style="background:var(--teal)"><div class="row"><b>Anchor</b><i>Nº 03 · A·01</i></div><span>Speak it aloud, with power and conviction.</span></div>
-          <div class="body"><div class="eyebrow" style="color:#17706a">The Word</div><div class="title">The Word</div><p class="q">Owing to the vibratory power of words, whatever man voices, he begins to attract.</p></div>
+      <div class="deck-cards one">
+        <article class="pc anchor" style="max-width:300px"><div class="band" style="background:var(--teal)"><div class="row"><b>Anchor</b><i>Nº 03 · A·01</i></div><span>Speak it aloud, with power and conviction.</span></div>
+          <div class="body"><div class="eyebrow" style="color:#1c6f65">The Word</div><div class="title">The Word</div><p class="q" >Owing to the vibratory power of words, whatever man voices, he begins to attract.</p></div>
           <div class="foot"><b>Power Deck Nº 03 · Shinn, 1925</b><span>Ch. III</span></div></article>
-        <article class="pc anchor"><div class="band" style="background:var(--teal)"><div class="row"><b>Anchor</b><i>Nº 03 · A·02</i></div><span>Speak it aloud, with power and conviction.</span></div>
-          <div class="body"><div class="eyebrow" style="color:#17706a">On Waking</div><div class="title">On Waking</div><p class="q">Thy will be done this day! Today is a day of completion; I give thanks for this perfect day, miracle shall follow miracle and wonders shall never cease.</p></div>
-          <div class="foot"><b>Power Deck Nº 03 · Shinn, 1925</b><span>Ch. IV</span></div></article>
       </div>
     </article>
   </div>
 </section>
 
+<!-- 6. TRUST: why believe the claim -->
 <section class="paper trust">
   <div class="wrap">
     <p class="label" style="color:var(--brick)">Why trust it</p>
-    <h2>The real thing, made daily.</h2>
+    <h2 style="margin-top:14px">The real thing, made daily.</h2>
     <div class="trust-grid">
-      <div><h3>Verbatim</h3><p>Every card line is the author’s own words. Each one is checked against the source text before it is printed. We name the cards and the states. We never rewrite the author.</p></div>
+      <div><h3>Verbatim</h3><p>Every card line is the author's own words. Each one is checked against the source text before it is printed. We name the cards and the states. We never rewrite the author.</p></div>
       <div><h3>Sourced</h3><p>Every card names its chapter. Hill, 1937. Wattles, 1910. Shinn, 1925. All three texts are in the public domain, which is why you get the original and not our version of it.</p></div>
       <div><h3>Used first</h3><p>The decks exist because the practices worked on the person who built them. The manual in each box opens with that story, in his words.</p></div>
     </div>
@@ -562,22 +480,23 @@ footer p { max-width: 52em; }
   </div>
 </section>
 
+<!-- 7. WHO IT IS FOR, AND WHO IT ISN'T -->
 <section class="fit">
   <div class="wrap">
-    <p class="label">Is this for you</p>
-    <h2>Built for people who already believe the books.</h2>
+    <p class="label" style="color:var(--amber)">Is this for you</p>
+    <h2 style="margin-top:14px">Built for people who already believe the books.</h2>
     <div class="fit-grid">
       <div class="yes">
         <h3>This is for you if</h3>
         <ul>
-          <li>You’ve read at least one of these books and the ideas haven’t changed your days yet.</li>
+          <li>You've read at least one of these books and the ideas haven't changed your days yet.</li>
           <li>You want a tool you pick up and use, not another thing to read.</li>
-          <li>You’re fine with the authors’ own language, including God, Spirit and Infinite Intelligence.</li>
-          <li>You’d rather practice for ten minutes than study for two hours.</li>
+          <li>You're fine with the authors' own language, including God, Spirit and Infinite Intelligence.</li>
+          <li>You'd rather practice for ten minutes than study for two hours.</li>
         </ul>
       </div>
       <div class="no">
-        <h3>This isn’t for you if</h3>
+        <h3>This isn't for you if</h3>
         <ul>
           <li>You want a summary or a modern paraphrase of the book.</li>
           <li>You want a promise of results. The authors made their claims. The deck gives you the practice to test them.</li>
@@ -588,26 +507,26 @@ footer p { max-width: 52em; }
   </div>
 </section>
 
+<!-- 8. FAQ -->
 <section class="paper faq">
   <div class="wrap">
     <p class="label" style="color:var(--brick)">Questions</p>
-    <h2>Before you decide</h2>
+    <h2 style="margin-top:14px">Before you decide</h2>
     <div class="faq-list">
-      <details><summary>Is this a summary of the book?</summary><p>No. Every line on a card is quoted from the original text, in the author’s words, and checked against it. You still want the book. The deck is how you use it.</p></details>
+      <details><summary>Is this a summary of the book?</summary><p>No. Every line on a card is quoted from the original text, in the author's words, and checked against it. You still want the book. The deck is how you use it.</p></details>
       <details><summary>Which deck should I start with?</summary><p>The one whose problem you recognized above. If two fit, start with Think and Grow Rich. It has the clearest daily rhythm: read your statement aloud, morning and night.</p></details>
-      <details><summary>Do I need to share the authors’ beliefs?</summary><p>You don’t have to, but the cards will use their language. These authors write about God, Spirit and Infinite Intelligence, and the decks keep every word as written. We don’t soften it and we don’t add to it.</p></details>
+      <details><summary>Do I need to share the authors' beliefs?</summary><p>You don't have to, but the cards will use their language. These authors write about God, Spirit and Infinite Intelligence, and the decks keep every word as written. We don't soften it and we don't add to it.</p></details>
       <details><summary>Are the decks affiliated with the authors or their estates?</summary><p>No. The texts are in the public domain. Power Decks are not affiliated with or endorsed by the Napoleon Hill Foundation or any other publisher or estate connected to these authors.</p></details>
       <details><summary>When can I get one, and what will it cost?</summary><p>The decks go on sale Black Friday, Nov 27, 2026. The first run is small, and it is a beta run, so the launch note goes to the list first with price and where to buy.</p></details>
     </div>
   </div>
 </section>
 
-<!-- NIGHT BLOCK bookend -->
+<!-- 9. FINAL CTA -->
 <section class="final" id="join">
-  <div class="orn orn-final" aria-hidden="true"><i></i><b></b></div>
   <div class="wrap">
     <p class="label" style="color:var(--amber)">Nov 27</p>
-    <h2>Be there when the first run opens.</h2>
+    <h2 style="margin-top:14px">Be there when the first run opens.</h2>
     <p class="lede">One email: the date, the price, where to get your deck. Nothing else.</p>
     <form class="signup" id="join-final" novalidate>
       <label for="em-final" class="sr" style="position:absolute;left:-9999px">Email</label>
